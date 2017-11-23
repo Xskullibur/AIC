@@ -20,7 +20,7 @@ public class Menu extends Computer
     private boolean result = false;
 
     //Menu
-    public void GenetrateMenu()
+    public void GenerateMenu()
     {
         System.out.println("********************* Artificial Intelligence Co. *********************");
         System.out.println("[1]     Add information for new Desktop");
@@ -69,7 +69,7 @@ public class Menu extends Computer
         }
     }
 
-    Scanner comName = new Scanner(System.in);
+    //Scanner comName = new Scanner(System.in);
     Scanner comID = new Scanner(System.in);
     Scanner processSpeed = new Scanner(System.in);
     Scanner ram = new Scanner(System.in);
@@ -84,23 +84,23 @@ public class Menu extends Computer
         DesktopName = comName.next();*/
 
         //Desktop ID
-        System.out.print("\nWhat is the Computer ID: ");
+        System.out.print("What is the Computer ID: ");
         DesktopID = comID.next();
 
         //Processor Speed
-        System.out.print("\nWhat is the Processor Speed: ");
+        System.out.print("What is the Processor Speed: ");
         ProcessorSpeed = processSpeed.next();
 
         //RAM
-        System.out.print("\nWhat is the  Ram:");
+        System.out.print("What is the  Ram:");
         Ram = ram.next();
 
         //HDD
-        System.out.print("\nWhat is the Hard Disk Size: " );
+        System.out.print("What is the Hard Disk Size: " );
         Hdd = hdd.next();
 
         //Price
-        System.out.print("\nWhat is the Price: $S");
+        System.out.print("What is the Price: $S");
         while (true)
         {
             String sPrice = price.next();
@@ -144,7 +144,7 @@ public class Menu extends Computer
         desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");
-        GenetrateMenu();
+        GenerateMenu();
     }
 
     private void NewLaptop()
@@ -157,24 +157,24 @@ public class Menu extends Computer
         Scanner price = new Scanner(System.in);
         Scanner weight = new Scanner(System.in);
 
-        System.out.print("\nWhat is the Laptop ID: ");
+        System.out.print("What is the Laptop ID: ");
         LaptopID = comID.next();
-        System.out.print("\nWhat is the Processor Speed (in GHZ): ");
+        System.out.print("What is the Processor Speed (in GHZ): ");
         ProcessorSpeed = processSpeed.next();
-        System.out.print("\nWhat is the Ram:");
+        System.out.print("What is the Ram:");
         Ram = ram.next();
-        System.out.print("\nWhat is the Hard Disk Size: " );
+        System.out.print("What is the Hard Disk Size: " );
         Hdd = hdd.next();
-        System.out.print("\nWhat is the Price: S$");
+        System.out.print("What is the Price: S$");
         Price = price.nextDouble();
-        System.out.print("\nWhat is the Weight: ");
+        System.out.print("What is the Weight: ");
         Weight = weight.next();
 
         Laptop l1 = new Laptop(LaptopID, ProcessorSpeed, Ram, Hdd, Price, Weight);
         laptop.add(l1);
 
         System.out.println("\nYour information has been added successfully");
-        GenetrateMenu();
+        GenerateMenu();
     }
 
     public void DisplayAllInfo()

@@ -1,5 +1,6 @@
 public class Computer {
 
+    private String Name;
     private String ComputerID;
     private String ProcessorSpeed;
     private String Ram;
@@ -27,14 +28,14 @@ public class Computer {
         Price = price;
     }
 
+    public void setName(String name) { Name = name; }
+
     //Getter
     public String getRam() {
         return Ram;
     }
 
-    public String getHarddisk() {
-        return HardDisk;
-    }
+    public String getHarddisk() { return HardDisk; }
 
     public double getPrice() {
         return Price;
@@ -47,7 +48,9 @@ public class Computer {
     public String getProcessorSpeed() {
         return ProcessorSpeed;
     }
-    
+
+    public String getName() { return Name; }
+
     //Display Info
     public void DisplayInfo()
     {
