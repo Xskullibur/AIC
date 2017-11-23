@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Desktop extends Computer {
 
     private String Monitor;

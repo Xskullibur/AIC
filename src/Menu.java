@@ -17,16 +17,17 @@ public class Menu extends Computer
     private String Weight;
     private ArrayList<Desktop> desktop = new ArrayList<>();
     private ArrayList<Laptop> laptop = new ArrayList<>();
-    private boolean result = false;
 
     //Menu
     public void GenerateMenu()
     {
         System.out.println("********************* Artificial Intelligence Co. *********************");
-        System.out.println("[1]     Add information for new Desktop");
-        System.out.println("[2]     Add information for new Laptop");
+        System.out.println("[1]     Add Information for New Desktop");
+        System.out.println("[2]     Add Information for New Laptop");
         System.out.println("[3]     Display all computer Information");
-        System.out.println("[4]     Quit");
+        System.out.println("[4]     Remove Information for Desktop");
+        System.out.println("[5]     Remove Information for Laptop");
+        System.out.println("[6]     Quit");
         System.out.println("***********************************************************************");
         System.out.print("Please enter either 1 to 4: ");
 
@@ -63,6 +64,15 @@ public class Menu extends Computer
                 break;
             }
             case 4:
+            {
+                RemoveDesktop();
+                break;
+            }
+            case 5:
+            {
+                break;
+            }
+            case 6:
             {
                 System.exit(0);
             }
@@ -177,6 +187,35 @@ public class Menu extends Computer
         GenerateMenu();
     }
 
+    public void RemoveDesktop()
+    {
+        int index = -1;
+        boolean result = true;
+        while (result)
+        {
+            if (result)
+            {
+                Scanner Remove = new Scanner(System.in);
+                System.out.println("Please Enter Computer ID to Delete: ");
+                String ID = Remove.next();
+                for (Desktop d: desktop)
+                {
+                    if (!d.getComputerID().equals(ID))
+                    {
+                        System.out.println("Invalid Computer Please Try Again... \n");
+                    }
+                    else
+                    {
+                        index = desktop.indexOf(d);
+                        result = false;
+                    }
+                }
+            }
+            else desktop.remove(index);
+        }
+        GenerateMenu();
+    }
+
     public void DisplayAllInfo()
     {
         System.out.println("\n=============================   Desktops   ============================");
@@ -192,5 +231,7 @@ public class Menu extends Computer
             l.DisplayInfo();
             System.out.println("=======================================================================");
         }
+
+        GenerateMenu();
     }
 }

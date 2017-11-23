@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Laptop extends Computer{
 
     private String Weight;
