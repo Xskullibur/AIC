@@ -6,7 +6,7 @@ public class Menu extends Computer
     private int input;
     private String choice;
     private String DesktopName;
-    private String DesktopID;
+    private int DesktopID;
     private String LaptopName;
     private String LaptopID;
     private String ProcessorSpeed;
@@ -95,8 +95,28 @@ public class Menu extends Computer
         DesktopName = comName.next();*/
 
         //Desktop ID
+        /**
         System.out.print("What is the Computer ID: ");
         DesktopID = comID.next();
+         **/
+        Scanner comID = new Scanner(System.in);
+        String DDD;
+        System.out.print("What is the Computer ID: ");
+        while(true)
+        {
+            String ID = comID.nextLine();
+            try
+            {
+                DesktopID = Integer.parseInt(ID);
+                DDD ="D" + DesktopID;
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("ID Invalid!");
+            }
+
+        }
 
         //Processor Speed
         System.out.print("What is the Processor Speed: ");
@@ -151,7 +171,7 @@ public class Menu extends Computer
                 Monitor = "LCD";
         }
 
-        Desktop d1 = new Desktop(DesktopID,ProcessorSpeed,Ram,Hdd,Price,Monitor);
+        Desktop d1 = new Desktop(DDD,ProcessorSpeed,Ram,Hdd,Price,Monitor);
         desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");
