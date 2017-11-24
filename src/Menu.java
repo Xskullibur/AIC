@@ -1,3 +1,6 @@
+import com.sun.xml.internal.bind.v2.model.core.ID;
+import jdk.nashorn.internal.runtime.NumberToString;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -8,13 +11,13 @@ public class Menu extends Computer
     private String DesktopName;
     private int DesktopID;
     private String LaptopName;
-    private String LaptopID;
-    private String ProcessorSpeed;
+    private int LaptopID;
+    private int ProcessorSpeed;
     private String Ram;
     private String Hdd;
     private Double Price;
     private String Monitor = "";
-    private String Weight;
+    private int Weight;
     private ArrayList<Desktop> desktop = new ArrayList<>();
     private ArrayList<Laptop> laptop = new ArrayList<>();
 
@@ -29,7 +32,7 @@ public class Menu extends Computer
         System.out.println("[5]     Remove Information for Laptop");
         System.out.println("[6]     Quit");
         System.out.println("***********************************************************************");
-        System.out.print("Please enter either 1 to 4: ");
+        System.out.print("Please enter either 1 to 6: ");
 
         Scanner Scan = new Scanner(System.in);
         while (true)
@@ -85,6 +88,7 @@ public class Menu extends Computer
     Scanner processSpeed = new Scanner(System.in);
     Scanner ram = new Scanner(System.in);
     Scanner hdd = new Scanner(System.in);
+    Scanner HDDsize = new Scanner(System.in);
     Scanner price = new Scanner(System.in);
     Scanner monitor = new Scanner(System.in);
 
@@ -95,16 +99,24 @@ public class Menu extends Computer
         DesktopName = comName.next();*/
 
         //Desktop ID
-        /**
-        System.out.print("What is the Computer ID: ");
-        DesktopID = comID.next();
-         **/
         Scanner comID = new Scanner(System.in);
         String DDD;
-        System.out.print("What is the Computer ID: ");
+        String dID;
+        System.out.println("What is the Computer ID: ");
         while(true)
         {
             String ID = comID.nextLine();
+            /**
+            for (Desktop d:desktop)
+            {
+                dID = d.getComputerID();
+                if (dID == ID)
+                {
+
+                }
+            }
+            **/
+
             try
             {
                 DesktopID = Integer.parseInt(ID);
@@ -113,28 +125,107 @@ public class Menu extends Computer
             }
             catch (NumberFormatException e)
             {
-                System.out.println("ID Invalid!");
+                System.out.println("Computer ID Invalid! Please enter valid ID...\nPlease Enter Computer ID: ");
             }
 
         }
 
         //Processor Speed
-        System.out.print("What is the Processor Speed: ");
-        ProcessorSpeed = processSpeed.next();
-
-        //RAM
-        System.out.print("What is the  Ram:");
-        Ram = ram.next();
-
-        //HDD
-        System.out.print("What is the Hard Disk Size: " );
-        Hdd = hdd.next();
-
-        //Price
-        System.out.print("What is the Price: $S");
+        System.out.println("What is the Processor Speed: ");
+        String PPP;
         while (true)
         {
-            String sPrice = price.next();
+            String sSpeed = processSpeed.next();
+            try
+            {
+                ProcessorSpeed = Integer.parseInt(sSpeed);
+                PPP = sSpeed + " GHz";
+                break;
+            }
+            catch(NumberFormatException e)
+            {
+                System.out.println("Invalid Price Input! Please enter Valid Price...\nPlease Enter Processor Speed: ");
+            }
+        }
+
+        //RAM
+        System.out.print("What is the Ram:\n");
+        String RRR;
+        int sRam;
+        while (true)
+        {
+            RRR = ram.next();
+           try
+           {
+               sRam = Integer.parseInt(RRR);
+               break;
+           }
+           catch (NumberFormatException e)
+           {
+               System.out.println("Invalid RAM Input! Please enter Valid Ram...\nPlease Enter RAM: ");
+           }
+        }
+
+        if(sRam <=64)
+        {
+            RRR = RRR +" GB";
+        }
+        else if(sRam > 64 && sRam <1024)
+        {
+            RRR = RRR + " MB";
+        } else if (sRam >= 1024) {
+           RRR = Integer.toString(sRam / 1024) + " GB";
+        }
+
+        //HDD
+        System.out.print("What is the Hard Disk Size: \n");
+        int iSize;
+        while (true)
+        {
+            String hSize = HDDsize.next();
+            try
+            {
+                iSize = Integer.parseInt(hSize);
+                Hdd = Integer.toString(iSize);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid Size! Please enter Valid HDD Size...\nPlease Enter HDD Size: ");
+            }
+        }
+
+        Scanner bytes = new Scanner(System.in);
+        System.out.println("HDD Size\n1) GB\n2) TB");
+        int Bytes = 0;
+        while (Bytes != 1 || Bytes != 2)
+        {
+            String sBytes = bytes.next();
+            try
+            {
+                Bytes = Integer.parseInt(sBytes);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid Size! Please enter Valid Size...\nHDD Size:\n1) GB\n2) TB");
+            }
+        }
+        switch (Bytes)
+        {
+            case 1:
+                Hdd += " GB";
+                break;
+            case 2:
+                Hdd += " TB";
+                break;
+        }
+
+        //Price
+        System.out.print("What is the Price: \n$S");
+        while (true)
+        {
+            String sPrice = price.next()+"\n";
             try
             {
                 Price = Double.parseDouble(sPrice);
@@ -142,7 +233,7 @@ public class Menu extends Computer
             }
             catch(NumberFormatException e)
             {
-                System.out.println("\nInvalid Price Input...\nPlease Re-Enter Price:");
+                System.out.println("Invalid Price! Please enter Valid Price...\nPlease Re-Enter Price: ");
             }
         }
 
@@ -159,7 +250,7 @@ public class Menu extends Computer
             }
             catch (NumberFormatException e)
             {
-                System.out.println("Invalid Option Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
+                System.out.println("Invalid Option! Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
             }
         }
         switch(iMonitor)
@@ -171,7 +262,7 @@ public class Menu extends Computer
                 Monitor = "LCD";
         }
 
-        Desktop d1 = new Desktop(DDD,ProcessorSpeed,Ram,Hdd,Price,Monitor);
+        Desktop d1 = new Desktop(DDD,PPP,RRR,Hdd,Price,Monitor);
         desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");
@@ -184,24 +275,147 @@ public class Menu extends Computer
         Scanner comID = new Scanner(System.in);
         Scanner processSpeed = new Scanner(System.in);
         Scanner ram = new Scanner(System.in);
-        Scanner hdd = new Scanner(System.in);
+        //Scanner hdd = new Scanner(System.in);
         Scanner price = new Scanner(System.in);
         Scanner weight = new Scanner(System.in);
 
-        System.out.print("What is the Laptop ID: ");
-        LaptopID = comID.next();
-        System.out.print("What is the Processor Speed (in GHZ): ");
-        ProcessorSpeed = processSpeed.next();
-        System.out.print("What is the Ram:");
-        Ram = ram.next();
-        System.out.print("What is the Hard Disk Size: " );
-        Hdd = hdd.next();
-        System.out.print("What is the Price: S$");
-        Price = price.nextDouble();
-        System.out.print("What is the Weight: ");
-        Weight = weight.next();
+        System.out.print("What is the Laptop ID: \n");
+        String LLL;
+        while(true)
+        {
+            String ID = comID.nextLine();
+            try
+            {
+                LaptopID = Integer.parseInt(ID);
+                LLL ="L" + LaptopID;
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Computer ID Invalid! Please enter valid ID...\nPlease Enter Computer ID: ");
+            }
 
-        Laptop l1 = new Laptop(LaptopID, ProcessorSpeed, Ram, Hdd, Price, Weight);
+        }
+
+        System.out.print("What is the Processor Speed (in GHZ): \n");
+        String PPP;
+        while (true)
+        {
+            String sSpeed = processSpeed.next();
+            try
+            {
+                ProcessorSpeed = Integer.parseInt(sSpeed);
+                PPP = sSpeed + " GHz";
+                break;
+            }
+            catch(NumberFormatException e)
+            {
+                System.out.println("Invalid Price Input! Please enter Valid Price...\nPlease Enter Processor Speed: ");
+            }
+        }
+
+        System.out.print("What is the Ram:\n");
+        String RRR;
+        int sRam;
+        while (true)
+        {
+            RRR = ram.next();
+            try
+            {
+                sRam = Integer.parseInt(RRR);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid RAM Input! Please enter Valid Ram...\nPlease Enter RAM: ");
+            }
+        }
+
+        if(sRam <=64)
+        {
+            RRR = RRR +" GB";
+        }
+        else if(sRam > 64 && sRam <1024)
+        {
+            RRR = RRR + " MB";
+        } else if (sRam >= 1024) {
+            RRR = Integer.toString(sRam / 1024) + " GB";
+        }
+
+        System.out.print("What is the Hard Disk Size: \n");
+        int iSize;
+        while (true)
+        {
+            String hSize = HDDsize.next();
+            try
+            {
+                iSize = Integer.parseInt(hSize);
+                Hdd = Integer.toString(iSize);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid Size! Please enter Valid HDD Size...\nPlease Enter HDD Size: ");
+            }
+        }
+
+        Scanner bytes = new Scanner(System.in);
+        System.out.println("HDD Size\n1) GB\n2) TB");
+        int Bytes = 0;
+        while (Bytes != 1 || Bytes != 2)
+        {
+            String sBytes = bytes.next();
+            try
+            {
+                Bytes = Integer.parseInt(sBytes);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid Size! Please enter Valid Size...\nHDD Size:\n1) GB\n2) TB");
+            }
+        }
+        switch (Bytes)
+        {
+            case 1:
+                Hdd += " GB";
+                break;
+            case 2:
+                Hdd += " TB";
+                break;
+        }
+
+        System.out.print("What is the Price: \nS$");
+        while (true)
+        {
+            String sPrice = price.next();
+            try
+            {
+                Price = Double.parseDouble(sPrice);
+                break;
+            }
+            catch(NumberFormatException e)
+            {
+                System.out.println("Invalid Price! Please enter Valid Price...\nPlease Re-Enter Price: ");
+            }
+        }
+
+        System.out.print("What is the Weight: \n");
+        while (true)
+        {
+            String sWeight = weight.next();
+            try
+            {
+                Weight = Integer.parseInt(sWeight);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Invalid Weight! Please enter Valid Weight...\nPlease Re-Enter Weight: ");
+            }
+        }
+
+        Laptop l1 = new Laptop(LLL, PPP, RRR, Hdd, Price, Weight);
         laptop.add(l1);
 
         System.out.println("\nYour information has been added successfully");
@@ -282,7 +496,7 @@ public class Menu extends Computer
             else
             {
                 laptop.remove(index);
-                wResult = false;
+                break;
             }
         }
         GenerateMenu();

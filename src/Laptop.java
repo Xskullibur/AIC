@@ -1,17 +1,17 @@
 public class Laptop extends Computer{
 
-    private String Weight;
+    private int Weight;
 
 
-    public String  getWeight() {
+    public int  getWeight() {
         return Weight;
     }
 
-    public void setWeight(String  weight) {
+    public void setWeight(int  weight) {
         Weight = weight;
     }
 
-    public Laptop(String id, String s, String r, String h, double p, String w)
+    public Laptop(String id, String s, String r, String h, double p, int w)
     {
         setComputerID(id);
         setProcessorSpeed(s);
