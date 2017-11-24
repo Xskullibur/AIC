@@ -127,7 +127,6 @@ public class Menu extends Computer
             {
                 System.out.println("Computer ID Invalid! Please enter valid ID...\nPlease Enter Computer ID: ");
             }
-
         }
 
         //Processor Speed
