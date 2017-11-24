@@ -70,6 +70,7 @@ public class Menu extends Computer
             }
             case 5:
             {
+                RemoveLaptop();
                 break;
             }
             case 6:
@@ -190,14 +191,23 @@ public class Menu extends Computer
     public void RemoveDesktop()
     {
         int index = -1;
-        boolean result = true;
-        while (result)
+        String ID;
+        boolean wResult = true;
+        boolean iResult = true;
+        while (wResult)
         {
-            if (result)
+            if (iResult)
             {
                 Scanner Remove = new Scanner(System.in);
-                System.out.println("Please Enter Computer ID to Delete: ");
-                String ID = Remove.next();
+                System.out.println("Please Enter Computer ID to Delete: \n[Insert 'back' to Return to Menu]");
+                ID = Remove.next();
+
+                if (ID.equals("back"))
+                {
+                    GenerateMenu();
+                    wResult = false;
+                }
+
                 for (Desktop d: desktop)
                 {
                     if (!d.getComputerID().equals(ID))
@@ -207,11 +217,53 @@ public class Menu extends Computer
                     else
                     {
                         index = desktop.indexOf(d);
-                        result = false;
+                        iResult = false;
                     }
                 }
             }
-            else desktop.remove(index);
+            else
+            {
+                desktop.remove(index);
+                break;
+            }
+        }
+        GenerateMenu();
+    }
+
+    public void RemoveLaptop()
+    {
+        int index = -1;
+        String ID;
+        boolean wResult = true;
+        boolean iResult = true;
+        while (wResult)
+        {
+            if (iResult)
+            {
+                Scanner Remove = new Scanner(System.in);
+                System.out.println("Please Enter Laptop ID to Delete: \n[Insert 'back' to return]");
+                ID = Remove.next();
+
+                if (ID.equals("back"))
+                {
+                    GenerateMenu();
+                    wResult = false;
+                }
+
+                for (Laptop l : laptop) {
+                    if (!l.getComputerID().equals(ID)) {
+                        System.out.println("Invalid Computer Please Try Again... \n");
+                    } else {
+                        index = laptop.indexOf(l);
+                        iResult = false;
+                    }
+                }
+            }
+            else
+            {
+                laptop.remove(index);
+                wResult = false;
+            }
         }
         GenerateMenu();
     }
