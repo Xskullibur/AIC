@@ -7,14 +7,9 @@ public class Desktop extends Computer {
         return Monitor;
     }
 
-    public void setMonitor(String monitor) {
-        if(monitor.equals("LCD")) {
-            Monitor = monitor;
-        }
-        else if(monitor.equals("LED")) {
-            Monitor =monitor;
-        }
-
+    public void setMonitor(String monitor)
+    {
+        Monitor = monitor;
     }
 
     public Desktop(String id, String s, String r, String h, double p, String m) {

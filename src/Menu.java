@@ -1,16 +1,13 @@
 import com.sun.xml.internal.bind.v2.model.core.ID;
-import jdk.nashorn.internal.runtime.NumberToString;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Menu extends Computer
 {
-    private int input;
-    private String choice;
-    private String DesktopName;
+    //private String DesktopName;
+    //private String LaptopName;
     private int DesktopID;
-    private String LaptopName;
     private int LaptopID;
     private int ProcessorSpeed;
     private String Ram;
@@ -24,6 +21,8 @@ public class Menu extends Computer
     //Menu
     public void GenerateMenu()
     {
+        int input;
+        String choice;
         System.out.println("********************* Artificial Intelligence Co. *********************");
         System.out.println("[1]     Add Information for New Desktop");
         System.out.println("[2]     Add Information for New Laptop");
@@ -84,13 +83,13 @@ public class Menu extends Computer
     }
 
     //Scanner comName = new Scanner(System.in);
-    Scanner comID = new Scanner(System.in);
-    Scanner processSpeed = new Scanner(System.in);
-    Scanner ram = new Scanner(System.in);
-    Scanner hdd = new Scanner(System.in);
-    Scanner HDDsize = new Scanner(System.in);
-    Scanner price = new Scanner(System.in);
-    Scanner monitor = new Scanner(System.in);
+    private Scanner comID = new Scanner(System.in);
+    private Scanner processSpeed = new Scanner(System.in);
+    private Scanner ram = new Scanner(System.in);
+    private Scanner hdd = new Scanner(System.in);
+    private Scanner HDDsize = new Scanner(System.in);
+    private Scanner price = new Scanner(System.in);
+    private Scanner monitor = new Scanner(System.in);
 
     //Add Desktop
     private void NewDesktop()
@@ -99,81 +98,51 @@ public class Menu extends Computer
         DesktopName = comName.next();*/
 
         //Desktop ID
-        Scanner comID = new Scanner(System.in);
-        String DDD;
-        String dID;
-        System.out.println("What is the Computer ID: ");
-        while(true)
+        boolean IDresult = true;
+        System.out.println("What is the Desktop's ID: ");
+        while(IDresult)
         {
-            String ID = comID.nextLine();
-            /**
-            for (Desktop d:desktop)
+            IDresult = setComputerID(comID.next());
+            if (IDresult)
             {
-                dID = d.getComputerID();
-                if (dID == ID)
-                {
-
-                }
+                System.out.println("Invalid Desktop ID! Please Enter Valid ID...\nPlease Re-Enter Desktop ID: ");
             }
-            **/
-
-            try
+            else
             {
-                DesktopID = Integer.parseInt(ID);
-                DDD ="D" + DesktopID;
                 break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Computer ID Invalid! Please enter valid ID...\nPlease Enter Computer ID: ");
             }
         }
 
         //Processor Speed
+        boolean Presult = true;
         System.out.println("What is the Processor Speed: ");
-        String PPP;
-        while (true)
+        while (Presult)
         {
-            String sSpeed = processSpeed.next();
-            try
-            {
-                ProcessorSpeed = Integer.parseInt(sSpeed);
-                PPP = sSpeed + " GHz";
-                break;
-            }
-            catch(NumberFormatException e)
+            Presult = setProcessorSpeed(processSpeed.next());
+            if (Presult)
             {
                 System.out.println("Invalid Price Input! Please enter Valid Price...\nPlease Enter Processor Speed: ");
+            }
+            else
+            {
+                break;
             }
         }
 
         //RAM
+        boolean Rresult = true;
         System.out.print("What is the Ram:\n");
-        String RRR;
-        int sRam;
-        while (true)
+        while (Rresult)
         {
-            RRR = ram.next();
-           try
-           {
-               sRam = Integer.parseInt(RRR);
-               break;
-           }
-           catch (NumberFormatException e)
-           {
-               System.out.println("Invalid RAM Input! Please enter Valid Ram...\nPlease Enter RAM: ");
-           }
-        }
-
-        if(sRam <=64)
-        {
-            RRR = RRR +" GB";
-        }
-        else if(sRam > 64 && sRam <1024)
-        {
-            RRR = RRR + " MB";
-        } else if (sRam >= 1024) {
-           RRR = Integer.toString(sRam / 1024) + " GB";
+            Rresult = setRam(ram.next());
+            if (Rresult)
+            {
+                System.out.println("Invalid RAM Input! Please enter Valid Ram...\nPlease Enter RAM: ");
+            }
+            else
+            {
+                break;
+            }
         }
 
         //HDD
@@ -261,7 +230,7 @@ public class Menu extends Computer
                 Monitor = "LCD";
         }
 
-        Desktop d1 = new Desktop(DDD,PPP,RRR,Hdd,Price,Monitor);
+        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),Hdd,Price,Monitor);
         desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");

@@ -8,16 +8,72 @@ public class Computer {
     private double Price;
 
     //Setter 
-    public void setComputerID(String computerID) {
-        ComputerID = computerID;
+    public boolean setComputerID(String computerID)
+    {
+        int iID;
+        while (true)
+        {
+            try
+            {
+                iID = Integer.parseInt(computerID);
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                return true;
+            }
+        }
+        ComputerID = "d" + computerID;
+        return false;
     }
 
-    public void setProcessorSpeed(String processorSpeed) {
-        ProcessorSpeed = processorSpeed;
+    public boolean setProcessorSpeed(String processorSpeed)
+    {
+        int iSpeed;
+        while(true)
+        {
+            try
+            {
+                iSpeed = Integer.parseInt(processorSpeed);
+                ProcessorSpeed = processorSpeed;
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void setRam(String ram) {
-        Ram = ram;
+    public boolean setRam(String ram)
+    {
+        while(true)
+        {
+            try
+            {
+                int iRam;
+                iRam = Integer.parseInt(ram);
+
+                if(iRam <= 64)
+                {
+                    Ram = iRam + " GB";
+                }
+                else if(iRam > 64 && iRam <1024)
+                {
+                    Ram = iRam + " MB";
+                } else if (iRam >= 1024)
+                {
+                    Ram = Integer.toString(iRam / 1024) + " GB";
+                }
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setHarddisk(String harddisk) {
@@ -55,7 +111,7 @@ public class Computer {
     public void DisplayInfo()
     {
         System.out.println("Computer ID: " + getComputerID());
-        System.out.println("ProcessorSpeed: " +getProcessorSpeed());
+        System.out.println("ProcessorSpeed: " +getProcessorSpeed() + " GHz");
         System.out.println("Ram: " + getRam() );
         System.out.println("Hard Disk: " + getHarddisk());
         System.out.println("Price: " + getPrice());

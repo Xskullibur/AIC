@@ -1,13 +1,14 @@
 public class Laptop extends Computer{
 
-    private int Weight;
+    protected int Weight;
 
 
     public int  getWeight() {
         return Weight;
     }
 
-    public void setWeight(int  weight) {
+    public void setWeight(int  weight)
+    {
         Weight = weight;
     }
 
