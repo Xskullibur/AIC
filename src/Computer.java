@@ -10,68 +10,54 @@ public class Computer {
     //Setter 
     public boolean setComputerID(String computerID)
     {
-        int iID;
-        while (true)
+        if (!computerID.matches("^[A-Za-z0-9]{1,4}$"))
         {
-            try
-            {
-                iID = Integer.parseInt(computerID);
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                return true;
-            }
+            return true;
         }
-        ComputerID = "d" + computerID;
-        return false;
+        else
+        {
+            ComputerID = computerID;
+            return false;
+        }
     }
 
     public boolean setProcessorSpeed(String processorSpeed)
     {
         int iSpeed;
-        while(true)
+        try
         {
-            try
-            {
-                iSpeed = Integer.parseInt(processorSpeed);
-                ProcessorSpeed = processorSpeed;
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                return true;
-            }
+            iSpeed = Integer.parseInt(processorSpeed);
+            ProcessorSpeed = processorSpeed;
+        }
+        catch (NumberFormatException e)
+        {
+            return true;
         }
         return false;
     }
 
     public boolean setRam(String ram)
     {
-        while(true)
+        try
         {
-            try
-            {
-                int iRam;
-                iRam = Integer.parseInt(ram);
+            int iRam;
+            iRam = Integer.parseInt(ram);
 
-                if(iRam <= 64)
-                {
-                    Ram = iRam + " GB";
-                }
-                else if(iRam > 64 && iRam <1024)
-                {
-                    Ram = iRam + " MB";
-                } else if (iRam >= 1024)
-                {
-                    Ram = Integer.toString(iRam / 1024) + " GB";
-                }
-                break;
-            }
-            catch (NumberFormatException e)
+            if(iRam <= 64)
             {
-                return true;
+                Ram = ram;
             }
+            else if(iRam > 64 && iRam <1024)
+            {
+                Ram = ram;
+            } else if (iRam >= 1024)
+            {
+                Ram = Integer.toString(iRam / 1024);
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            return true;
         }
         return false;
     }
@@ -83,8 +69,6 @@ public class Computer {
     public void setPrice(double price) {
         Price = price;
     }
-
-    public void setName(String name) { Name = name; }
 
     //Getter
     public String getRam() {
@@ -105,14 +89,28 @@ public class Computer {
         return ProcessorSpeed;
     }
 
-    public String getName() { return Name; }
+    private String RamBits()
+    {
+        if(Integer.parseInt(Ram) <= 64)
+        {
+            return " GB";
+        }
+        else if(Integer.parseInt(Ram) > 64 && Integer.parseInt(getRam()) <1024)
+        {
+            return " MB";
+        } else if (Integer.parseInt(Ram) >= 1024)
+        {
+            return " GB";
+        }
+        return "";
+    }
 
     //Display Info
     public void DisplayInfo()
     {
         System.out.println("Computer ID: " + getComputerID());
-        System.out.println("ProcessorSpeed: " +getProcessorSpeed() + " GHz");
-        System.out.println("Ram: " + getRam() );
+        System.out.println("ProcessorSpeed: " + getProcessorSpeed() + " GHz");
+        System.out.println("Ram: " + getRam() + RamBits());
         System.out.println("Hard Disk: " + getHarddisk());
         System.out.println("Price: " + getPrice());
     }

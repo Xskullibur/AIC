@@ -40,7 +40,14 @@ public class Menu extends Computer
             try
             {
                 input = Integer.parseInt(choice);
-                break;
+                if (input > 6 || input < 1)
+                {
+                    System.out.println("Invalid Input...\nPlease Re-Enter Your Choice:");
+                }
+                else
+                {
+                    break;
+                }
             }
             catch (NumberFormatException e)
             {
@@ -77,12 +84,12 @@ public class Menu extends Computer
             }
             case 6:
             {
+                System.out.println("Application Program Closed, Bye...");
                 System.exit(0);
             }
         }
     }
 
-    //Scanner comName = new Scanner(System.in);
     private Scanner comID = new Scanner(System.in);
     private Scanner processSpeed = new Scanner(System.in);
     private Scanner ram = new Scanner(System.in);
@@ -94,8 +101,6 @@ public class Menu extends Computer
     //Add Desktop
     private void NewDesktop()
     {
-        /*System.out.print("Computer Name: " );
-        DesktopName = comName.next();*/
 
         //Desktop ID
         boolean IDresult = true;
@@ -105,7 +110,7 @@ public class Menu extends Computer
             IDresult = setComputerID(comID.next());
             if (IDresult)
             {
-                System.out.println("Invalid Desktop ID! Please Enter Valid ID...\nPlease Re-Enter Desktop ID: ");
+                System.out.println("Invalid Desktop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Desktop ID: ");
             }
             else
             {
@@ -239,7 +244,6 @@ public class Menu extends Computer
 
     private void NewLaptop()
     {
-        //Scanner comName = new Scanner(System.in);
         Scanner comID = new Scanner(System.in);
         Scanner processSpeed = new Scanner(System.in);
         Scanner ram = new Scanner(System.in);
@@ -247,22 +251,20 @@ public class Menu extends Computer
         Scanner price = new Scanner(System.in);
         Scanner weight = new Scanner(System.in);
 
-        System.out.print("What is the Laptop ID: \n");
-        String LLL;
-        while(true)
+        //LaptopID
+        boolean IDresult = true;
+        System.out.println("What is the Laptop's ID: ");
+        while(IDresult)
         {
-            String ID = comID.nextLine();
-            try
+            IDresult = setComputerID(comID.next());
+            if (IDresult)
             {
-                LaptopID = Integer.parseInt(ID);
-                LLL ="L" + LaptopID;
+                System.out.println("Invalid Laptop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Laptop ID: ");
+            }
+            else
+            {
                 break;
             }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Computer ID Invalid! Please enter valid ID...\nPlease Enter Computer ID: ");
-            }
-
         }
 
         System.out.print("What is the Processor Speed (in GHZ): \n");
@@ -383,7 +385,7 @@ public class Menu extends Computer
             }
         }
 
-        Laptop l1 = new Laptop(LLL, PPP, RRR, Hdd, Price, Weight);
+        Laptop l1 = new Laptop(getComputerID(), PPP, RRR, Hdd, Price, Weight);
         laptop.add(l1);
 
         System.out.println("\nYour information has been added successfully");
