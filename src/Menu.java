@@ -196,9 +196,11 @@ public class Menu extends Computer
         {
             case 1:
                 Hdd += " GB";
+                setHardDisk(Hdd);
                 break;
             case 2:
                 Hdd += " TB";
+                setHardDisk(Hdd);
                 break;
         }
 
@@ -251,7 +253,7 @@ public class Menu extends Computer
                 Monitor = "LCD";
         }
 
-        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),Hdd,getPrice(), Monitor);
+        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),getHardDisk(),getPrice(), Monitor);
         desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");
