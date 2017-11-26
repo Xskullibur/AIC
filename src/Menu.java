@@ -152,6 +152,7 @@ public class Menu extends Computer
         }
 
         //HDD
+
         int iSize;
         System.out.println("What is the Hard Disk Size:");
         while (true)
@@ -202,7 +203,6 @@ public class Menu extends Computer
                 break;
         }
 
-
         //Price
         System.out.print("What is the Price: \n$S");
         while (true)
@@ -225,16 +225,24 @@ public class Menu extends Computer
         while (true)
         {
             String sMonitor = monitor.nextLine();
-            try
+            if (sMonitor.equals("1") || sMonitor.equals("2"))
             {
-                iMonitor = Integer.parseInt(sMonitor);
-                break;
+                try
+                {
+                    iMonitor = Integer.parseInt(sMonitor);
+                    break;
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("Invalid Option! Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
+                }
             }
-            catch (NumberFormatException e)
+            else
             {
                 System.out.println("Invalid Option! Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
             }
         }
+        
         switch(iMonitor)
         {
             case 1:

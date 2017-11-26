@@ -1,6 +1,5 @@
-public class Computer {
-
-    private String Name;
+public class Computer
+{
     private String ComputerID;
     private String ProcessorSpeed;
     private String Ram;
@@ -76,8 +75,6 @@ public class Computer {
         return Ram;
     }
 
-    public String getHarddisk() { return HardDisk; }
-
     public double getPrice() {
         return Price;
     }
@@ -98,7 +95,7 @@ public class Computer {
         System.out.println("Computer ID: " + getComputerID());
         System.out.println("ProcessorSpeed: " + getProcessorSpeed() + " GHz");
         System.out.println("Ram: " + getRam() + RamBytes);
-        System.out.println("Hard Disk: " + getHarddisk());
+        System.out.println("Hard Disk: " + getHardDisk());
         System.out.println("Price: $" + getPrice());
     }
 }
