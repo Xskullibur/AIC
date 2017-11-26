@@ -482,6 +482,8 @@ public class Menu extends Computer
     //Display All Info
     public void DisplayAllInfo()
     {
+        int Dname = 0;
+        int Lname = 0;
         if (desktop.isEmpty())
         {
             System.out.println("\n========================== No Desktop Found! ==========================");
@@ -491,6 +493,8 @@ public class Menu extends Computer
             System.out.println("\n=============================   Desktops   ============================");
             for (Desktop d:desktop)
             {
+                Dname += 1;
+                System.out.println("Desktop " + Dname + " of " + desktop.size());
                 d.DisplayInfo();
                 System.out.println("=======================================================================");
             }
@@ -505,6 +509,8 @@ public class Menu extends Computer
             System.out.println("\n=============================   Laptops   =============================");
             for (Laptop l:laptop)
             {
+                Lname += 1;
+                System.out.println("Laptop " + Lname + " of " + laptop.size());
                 l.DisplayInfo();
                 System.out.println("=======================================================================");
             }
