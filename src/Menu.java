@@ -8,6 +8,12 @@ public class Menu extends Computer
     private String Hdd;
     private ArrayList<Desktop> desktop = new ArrayList<>();
     private ArrayList<Laptop> laptop = new ArrayList<>();
+    private Scanner comID = new Scanner(System.in);
+    private Scanner processSpeed = new Scanner(System.in);
+    private Scanner ram = new Scanner(System.in);
+    private Scanner HDDsize = new Scanner(System.in);
+    private Scanner HDDbytes = new Scanner(System.in);
+    private Scanner price = new Scanner(System.in);
 
     //Menu
     public void GenerateMenu()
@@ -80,13 +86,6 @@ public class Menu extends Computer
             }
         }
     }
-
-    private Scanner comID = new Scanner(System.in);
-    private Scanner processSpeed = new Scanner(System.in);
-    private Scanner ram = new Scanner(System.in);
-    private Scanner HDDsize = new Scanner(System.in);
-    private Scanner HDDbytes = new Scanner(System.in);
-    private Scanner price = new Scanner(System.in);
 
     //Add Desktop
     private void NewDesktop()
@@ -251,6 +250,7 @@ public class Menu extends Computer
         GenerateMenu();
     }
 
+    //Add Laptop
     private void NewLaptop()
     {
         //LaptopID
@@ -395,6 +395,7 @@ public class Menu extends Computer
         GenerateMenu();
     }
 
+    //Remove Desktop
     public void RemoveDesktop()
     {
         int index = -1;
@@ -438,6 +439,7 @@ public class Menu extends Computer
         GenerateMenu();
     }
 
+    //Remove Laptop
     public void RemoveLaptop()
     {
         int index = -1;
@@ -477,22 +479,36 @@ public class Menu extends Computer
         GenerateMenu();
     }
 
+    //Display All Info
     public void DisplayAllInfo()
     {
-        System.out.println("\n=============================   Desktops   ============================");
-        for (Desktop d:desktop)
+        if (desktop.isEmpty())
         {
-            d.DisplayInfo();
-            System.out.println("=======================================================================");
+            System.out.println("\n========================== No Desktop Found! ==========================");
+        }
+        else
+        {
+            System.out.println("\n=============================   Desktops   ============================");
+            for (Desktop d:desktop)
+            {
+                d.DisplayInfo();
+                System.out.println("=======================================================================");
+            }
         }
 
-        System.out.println("\n=============================   Laptops   =============================");
-        for (Laptop l:laptop)
+        if (laptop.isEmpty())
         {
-            l.DisplayInfo();
-            System.out.println("=======================================================================");
+            System.out.println("========================== No Laptop Found! ===========================\n");
         }
-
+        else
+        {
+            System.out.println("\n=============================   Laptops   =============================");
+            for (Laptop l:laptop)
+            {
+                l.DisplayInfo();
+                System.out.println("=======================================================================");
+            }
+        }
         GenerateMenu();
     }
 }
