@@ -4,6 +4,7 @@ public class Computer {
     private String ComputerID;
     private String ProcessorSpeed;
     private String Ram;
+    private String RamBytes;
     private String HardDisk;
     private double Price;
 
@@ -38,21 +39,23 @@ public class Computer {
 
     public boolean setRam(String ram)
     {
+        int iRam;
         try
         {
-            int iRam;
             iRam = Integer.parseInt(ram);
-
-            if(iRam <= 64)
+            Ram = ram;
+            if (Integer.parseInt(Ram) <= 64)
             {
-                Ram = ram;
+                RamBytes = " GB";
             }
-            else if(iRam > 64 && iRam <1024)
+            else if (Integer.parseInt(Ram) > 64 && Integer.parseInt(Ram) < 1024)
             {
-                Ram = ram;
-            } else if (iRam >= 1024)
+                RamBytes = " MB";
+            }
+            else if (Integer.parseInt(Ram) >= 1024)
             {
-                Ram = Integer.toString(iRam / 1024);
+                Ram = Integer.toString(Integer.parseInt(Ram)/1024);
+                RamBytes = " GB";
             }
         }
         catch (NumberFormatException e)
@@ -62,9 +65,7 @@ public class Computer {
         return false;
     }
 
-    public void setHarddisk(String harddisk) {
-        HardDisk = harddisk;
-    }
+    public void setHardDisk(String hardDisk) { HardDisk = hardDisk; }
 
     public void setPrice(double price) {
         Price = price;
@@ -89,29 +90,15 @@ public class Computer {
         return ProcessorSpeed;
     }
 
-    private String RamBits()
-    {
-        if(Integer.parseInt(Ram) <= 64)
-        {
-            return " GB";
-        }
-        else if(Integer.parseInt(Ram) > 64 && Integer.parseInt(getRam()) <1024)
-        {
-            return " MB";
-        } else if (Integer.parseInt(Ram) >= 1024)
-        {
-            return " GB";
-        }
-        return "";
-    }
+    public String getHardDisk() { return HardDisk; }
 
     //Display Info
     public void DisplayInfo()
     {
         System.out.println("Computer ID: " + getComputerID());
         System.out.println("ProcessorSpeed: " + getProcessorSpeed() + " GHz");
-        System.out.println("Ram: " + getRam() + RamBits());
+        System.out.println("Ram: " + getRam() + RamBytes);
         System.out.println("Hard Disk: " + getHarddisk());
-        System.out.println("Price: " + getPrice());
+        System.out.println("Price: $" + getPrice());
     }
 }

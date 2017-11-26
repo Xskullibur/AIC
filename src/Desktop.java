@@ -16,7 +16,7 @@ public class Desktop extends Computer {
         setComputerID(id);
         setProcessorSpeed(s);
         setRam(r);
-        setHarddisk(h);
+        setHardDisk(h);
         setPrice(p);
         Monitor = m;
     }

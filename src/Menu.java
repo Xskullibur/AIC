@@ -95,6 +95,7 @@ public class Menu extends Computer
     private Scanner ram = new Scanner(System.in);
     private Scanner hdd = new Scanner(System.in);
     private Scanner HDDsize = new Scanner(System.in);
+    private Scanner HDDbytes = new Scanner(System.in);
     private Scanner price = new Scanner(System.in);
     private Scanner monitor = new Scanner(System.in);
 
@@ -136,13 +137,13 @@ public class Menu extends Computer
 
         //RAM
         boolean Rresult = true;
-        System.out.print("What is the Ram:\n");
+        System.out.println("What is the Ram: ");
         while (Rresult)
         {
             Rresult = setRam(ram.next());
             if (Rresult)
             {
-                System.out.println("Invalid RAM Input! Please enter Valid Ram...\nPlease Enter RAM: ");
+                System.out.println("Invalid RAM Input! Please enter Valid Ram...\\nPlease Enter RAM: ");
             }
             else
             {
@@ -151,8 +152,8 @@ public class Menu extends Computer
         }
 
         //HDD
-        System.out.print("What is the Hard Disk Size: \n");
         int iSize;
+        System.out.println("What is the Hard Disk Size:");
         while (true)
         {
             String hSize = HDDsize.next();
@@ -168,22 +169,29 @@ public class Menu extends Computer
             }
         }
 
-        Scanner bytes = new Scanner(System.in);
         System.out.println("HDD Size\n1) GB\n2) TB");
         int Bytes = 0;
-        while (Bytes != 1 || Bytes != 2)
+        while (true)
         {
-            String sBytes = bytes.next();
-            try
+            String sBytes = HDDbytes.next();
+            if (sBytes.equals("1") || sBytes.equals("2"))
             {
-                Bytes = Integer.parseInt(sBytes);
-                break;
+                try
+                {
+                    Bytes = Integer.parseInt(sBytes);
+                    break;
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
+                }
             }
-            catch (NumberFormatException e)
+            else
             {
-                System.out.println("Invalid Size! Please enter Valid Size...\nHDD Size:\n1) GB\n2) TB");
+                System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
             }
         }
+
         switch (Bytes)
         {
             case 1:
@@ -193,6 +201,7 @@ public class Menu extends Computer
                 Hdd += " TB";
                 break;
         }
+
 
         //Price
         System.out.print("What is the Price: \n$S");
