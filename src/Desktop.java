@@ -2,7 +2,6 @@ public class Desktop extends Computer {
 
     private String Monitor;
 
-
     public String getMonitor() {
         return Monitor;
     }

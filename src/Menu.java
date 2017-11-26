@@ -152,7 +152,6 @@ public class Menu extends Computer
         }
 
         //HDD
-
         int iSize;
         System.out.println("What is the Hard Disk Size:");
         while (true)
@@ -171,7 +170,7 @@ public class Menu extends Computer
         }
 
         System.out.println("HDD Size\n1) GB\n2) TB");
-        int Bytes = 0;
+        int Bytes;
         while (true)
         {
             String sBytes = HDDbytes.next();
@@ -210,7 +209,7 @@ public class Menu extends Computer
             String sPrice = price.next()+"\n";
             try
             {
-                Price = Double.parseDouble(sPrice);
+                setPrice(Double.parseDouble(sPrice));
                 break;
             }
             catch(NumberFormatException e)
@@ -242,7 +241,7 @@ public class Menu extends Computer
                 System.out.println("Invalid Option! Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
             }
         }
-        
+
         switch(iMonitor)
         {
             case 1:
@@ -252,7 +251,7 @@ public class Menu extends Computer
                 Monitor = "LCD";
         }
 
-        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),Hdd,Price,Monitor);
+        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),Hdd,getPrice(), Monitor);
         desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");
