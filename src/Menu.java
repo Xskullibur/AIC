@@ -1,15 +1,19 @@
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Menu extends Computer
 {
     private String Hdd;
+    private ArrayList<Desktop> desktop = new ArrayList<>();
+    private ArrayList<Laptop> laptop = new ArrayList<>();
     private Scanner comID = new Scanner(System.in);
     private Scanner processSpeed = new Scanner(System.in);
     private Scanner ram = new Scanner(System.in);
     private Scanner HDDsize = new Scanner(System.in);
     private Scanner HDDbytes = new Scanner(System.in);
     private Scanner price = new Scanner(System.in);
-    private Database database = new Database();
 
     //Menu
     public void GenerateMenu()
@@ -91,7 +95,6 @@ public class Menu extends Computer
         //Desktop ID
         boolean IDresult = true;
         System.out.println("What is the Desktop's ID: ");
-
         while(IDresult)
         {
             IDresult = setComputerID(comID.next());
@@ -241,7 +244,7 @@ public class Menu extends Computer
         }
 
         Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),getHardDisk(),getPrice(), Monitor);
-        database.addDesktop(d1);
+        desktop.add(d1);
 
         System.out.println("\nYour information has been added successfully");
         GenerateMenu();
@@ -386,7 +389,7 @@ public class Menu extends Computer
         }
 
         Laptop l1 = new Laptop(getComputerID(), getProcessorSpeed(), getRam(), getHardDisk(), getPrice(), Weight);
-        database.addLaptop(l1);
+        laptop.add(l1);
 
         System.out.println("\nYour information has been added successfully");
         GenerateMenu();
@@ -413,7 +416,7 @@ public class Menu extends Computer
                     wResult = false;
                 }
 
-                for (Desktop d: database.getDesktop())
+                for (Desktop d: desktop)
                 {
                     if (!d.getComputerID().equals(ID))
                     {
@@ -421,14 +424,14 @@ public class Menu extends Computer
                     }
                     else
                     {
-                        index = database.DesktopIndexOf(d);
+                        index = desktop.indexOf(d);
                         iResult = false;
                     }
                 }
             }
             else
             {
-                database.removeDesktop(index);
+                desktop.remove(index);
                 break;
             }
         }
@@ -457,18 +460,18 @@ public class Menu extends Computer
                     wResult = false;
                 }
 
-                for (Laptop l : database.getLaptop()) {
+                for (Laptop l : laptop) {
                     if (!l.getComputerID().equals(ID)) {
                         System.out.println("Invalid Computer Please Try Again... \n");
                     } else {
-                        index = database.LaptopIndexOf(l);
+                        index = laptop.indexOf(l);
                         iResult = false;
                     }
                 }
             }
             else
             {
-                database.removeLaptop(index);
+                laptop.remove(index);
                 break;
             }
         }
@@ -481,33 +484,33 @@ public class Menu extends Computer
     {
         int Dname = 0;
         int Lname = 0;
-        if (database.getDesktop().isEmpty())
+        if (desktop.isEmpty())
         {
             System.out.println("\n========================== No Desktop Found! ==========================");
         }
         else
         {
             System.out.println("\n=============================   Desktops   ============================");
-            for (Desktop d:database.getDesktop())
+            for (Desktop d:desktop)
             {
                 Dname += 1;
-                System.out.println("Desktop " + Dname + " of " + database.getDesktop().size());
+                System.out.println("Desktop " + Dname + " of " + desktop.size());
                 d.DisplayInfo();
                 System.out.println("=======================================================================");
             }
         }
 
-        if (database.getLaptop().isEmpty())
+        if (laptop.isEmpty())
         {
             System.out.println("========================== No Laptop Found! ===========================\n");
         }
         else
         {
             System.out.println("\n=============================   Laptops   =============================");
-            for (Laptop l:database.getLaptop())
+            for (Laptop l:laptop)
             {
                 Lname += 1;
-                System.out.println("Laptop " + Lname + " of " + database.getLaptop().size());
+                System.out.println("Laptop " + Lname + " of " + laptop.size());
                 l.DisplayInfo();
                 System.out.println("=======================================================================");
             }
