@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Menu extends Computer
 {
@@ -94,21 +93,10 @@ public class Menu extends Computer
         //Desktop ID
         boolean IDresult = true;
         System.out.println("What is the Desktop's ID: ");
-        String ID = "";
 
         while(IDresult)
         {
-            ID = comID.next();
-            for (Desktop d:database.getDesktop())
-            {
-                if (d.getComputerID().equals(ID))
-                {
-                    System.out.println("not unique");
-                    ID = comID.next();
-                }
-            }
-
-            IDresult = setComputerID(ID);
+            IDresult = setComputerID(comID.next());
             if (IDresult)
             {
                 System.out.println("Invalid Desktop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Desktop ID: ");
