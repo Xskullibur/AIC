@@ -3,9 +3,7 @@ import java.util.Scanner;
 public class Menu extends Computer
 {
     private String Hdd;
-    //private ArrayList<Desktop> desktop = new ArrayList<>();
-    //private ArrayList<Laptop> laptop = new ArrayList<>();
-    Database database = new Database();
+    private Database database = new Database();
     private Scanner comID = new Scanner(System.in);
     private Scanner processSpeed = new Scanner(System.in);
     private Scanner ram = new Scanner(System.in);
@@ -13,74 +11,141 @@ public class Menu extends Computer
     private Scanner HDDbytes = new Scanner(System.in);
     private Scanner price = new Scanner(System.in);
 
-    //Menu
-    public void GenerateMenu()
+    //NewMenu
+    public void Menu()
     {
-        int input;
-        String choice;
-        System.out.println("********************* Artificial Intelligence Co. *********************");
-        System.out.println("[1]     Add Information for New Desktop");
-        System.out.println("[2]     Add Information for New Laptop");
-        System.out.println("[3]     Display all computer Information");
-        System.out.println("[4]     Remove Information for Desktop");
-        System.out.println("[5]     Remove Information for Laptop");
-        System.out.println("[6]     Quit");
+        String input;
+        System.out.println("\n********************* Artificial Intelligence Co. *********************");
+        System.out.println("[1]     Desktop");
+        System.out.println("[2]     Laptop");
+        System.out.println("[3]     Display All Computer Information");
+        System.out.println("[4]     Quit");
         System.out.println("***********************************************************************");
-        System.out.print("Please enter either 1 to 6: ");
+        System.out.print("Please enter either 1 to 4: ");
 
-        Scanner Scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         while (true)
         {
-            choice = Scan.next();
-            try
+            input = scan.next();
+
+            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4"))
             {
-                input = Integer.parseInt(choice);
-                if (input > 6 || input < 1)
+                switch (input)
                 {
-                    System.out.println("Invalid Input...\nPlease Re-Enter Your Choice:");
+                    case "1":
+                        DesktopMenu();
+                        break;
+                    case "2":
+                        LaptopMenu();
+                        break;
+                    case "3":
+                        DisplayAllInfo();
+                        break;
+                    case "4":
+                        System.out.println("Application Program Closed, Bye...");
+                        System.exit(0);
+                        break;
+
                 }
-                else
-                {
-                    break;
-                }
+                break;
             }
-            catch (NumberFormatException e)
+            else
             {
                 System.out.println("Invalid Input...\nPlease Re-Enter Your Choice:");
             }
         }
+    }
 
-        switch (input)
+    //Desktop Menu
+    public void DesktopMenu()
+    {
+        String input;
+        System.out.println("\n============================= Desktop Menu ============================");
+        System.out.println("[1]     Add New Desktop");
+        System.out.println("[2]     Remove Existing Desktop");
+        System.out.println("[3]     Edit Existing Desktop");
+        System.out.println("[4]     Display all Desktops");
+        System.out.println("[5]     Back");
+        System.out.println("=======================================================================");
+        System.out.print("Please enter either 1 to 4: ");
+
+        Scanner scan = new Scanner(System.in);
+        while (true)
         {
-            case 1:
+            input = scan.next();
+            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4"))
             {
-                NewDesktop();
+                switch (input)
+                {
+                    case "1":
+                        NewDesktop();
+                        break;
+                    case"2":
+                        RemoveDesktop();
+                        break;
+                    case "3":
+                        //EditDesktop();
+                        System.out.println("Editing");
+                        break;
+                    case "4":
+                        DisplayDesktop();
+                        break;
+                    case "5":
+                        Menu();
+                        break;
+                }
                 break;
             }
-            case 2:
+            else
             {
-                NewLaptop();
+                System.out.println("Invalid Input...\nPlease Re-Enter Your Choice:");
+            }
+        }
+    }
+
+    //Laptop Menu
+    public void LaptopMenu()
+    {
+        String input;
+        System.out.println("\n===================== Artificial Intelligence Co. =====================");
+        System.out.println("[1]     Add New Laptop");
+        System.out.println("[2]     Remove Existing Laptop");
+        System.out.println("[3]     Edit Existing Laptop");
+        System.out.println("[4]     Display all Laptops");
+        System.out.println("[5]     Back");
+        System.out.println("=======================================================================");
+        System.out.print("Please enter either 1 to 4: ");
+
+        Scanner scan = new Scanner(System.in);
+        while (true)
+        {
+            input = scan.next();
+            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4"))
+            {
+                switch (input)
+                {
+                    case "1":
+                        NewLaptop();
+                        break;
+                    case "2":
+                        RemoveLaptop();
+                        break;
+                    case "3":
+                        //EditLaptop();
+                        System.out.println("Editing");
+                        break;
+                    case "4":
+                        DisplayLaptop();
+                        break;
+                    case "5":
+                        Menu();
+                        break;
+                }
                 break;
             }
-            case 3:
+            else
             {
-                DisplayAllInfo();
-                break;
-            }
-            case 4:
-            {
-                RemoveDesktop();
-                break;
-            }
-            case 5:
-            {
-                RemoveLaptop();
-                break;
-            }
-            case 6:
-            {
-                System.out.println("Application Program Closed, Bye...");
-                System.exit(0);
+                System.out.println("Invalid Input...\nPlease Re-Enter Your Choice:");
             }
         }
     }
@@ -242,11 +307,12 @@ public class Menu extends Computer
                 Monitor = "LCD";
         }
 
-        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),getHardDisk(),getPrice(), Monitor);
+        Desktop d1 = new Desktop(getComputerID(),getProcessorSpeed(),getRam(),getHardDisk(),getPrice());
+        d1.setMonitor(Monitor);
         database.addDesktop(d1);
 
         System.out.println("\nYour information has been added successfully");
-        GenerateMenu();
+        Menu();
     }
 
     //Add Laptop
@@ -387,11 +453,12 @@ public class Menu extends Computer
             }
         }
 
-        Laptop l1 = new Laptop(getComputerID(), getProcessorSpeed(), getRam(), getHardDisk(), getPrice(), Weight);
+        Laptop l1 = new Laptop(getComputerID(), getProcessorSpeed(), getRam(), getHardDisk(), getPrice());
+        l1.setWeight(Weight);
         database.addLaptop(l1);
 
         System.out.println("\nYour information has been added successfully");
-        GenerateMenu();
+        Menu();
     }
 
     //Remove Desktop
@@ -411,7 +478,7 @@ public class Menu extends Computer
 
                 if (ID.equals("back"))
                 {
-                    GenerateMenu();
+                    Menu();
                     wResult = false;
                 }
 
@@ -435,7 +502,7 @@ public class Menu extends Computer
             }
         }
         System.out.println("Desktop Removed Successfully...");
-        GenerateMenu();
+        Menu();
     }
 
     //Remove Laptop
@@ -455,7 +522,7 @@ public class Menu extends Computer
 
                 if (ID.equals("back"))
                 {
-                    GenerateMenu();
+                    Menu();
                     wResult = false;
                 }
 
@@ -475,7 +542,7 @@ public class Menu extends Computer
             }
         }
         System.out.println("Laptop Removed Successfully...");
-        GenerateMenu();
+        Menu();
     }
 
     //Display All Info
@@ -514,6 +581,80 @@ public class Menu extends Computer
                 System.out.println("=======================================================================");
             }
         }
-        GenerateMenu();
+        Menu();
+    }
+
+    //Display Desktop
+    public void DisplayDesktop()
+    {
+        Scanner back = new Scanner(System.in);
+        int Dname = 0;
+        if (database.getDesktop().isEmpty())
+        {
+            System.out.println("\n========================== No Desktop Found! ==========================");
+        }
+        else
+        {
+            System.out.println("\n=============================   Desktops   ============================");
+            for (Desktop d:database.getDesktop())
+            {
+                Dname += 1;
+                System.out.println("Desktop " + Dname + " of " + database.DesktopSize());
+                d.DisplayInfo();
+                System.out.println("=======================================================================");
+            }
+        }
+
+        System.out.println("Please Enter 'back' to Return to Menu: ");
+        while(true)
+        {
+            String input = back.next();
+            if (input.equals("back"))
+            {
+                Menu();
+                break;
+            }
+            else
+            {
+                System.out.println("Invalid Input...\nEnter 'back' to Return to Menu: ");
+            }
+        }
+    }
+
+    //Display Laptop
+    public void DisplayLaptop()
+    {
+        Scanner back = new Scanner(System.in);
+        int Lname = 0;
+        if (database.getLaptop().isEmpty())
+        {
+            System.out.println("========================== No Laptop Found! ===========================\n");
+        }
+        else
+        {
+            System.out.println("\n=============================   Laptops   =============================");
+            for (Laptop l:database.getLaptop())
+            {
+                Lname += 1;
+                System.out.println("Laptop " + Lname + " of " + database.LaptopSize());
+                l.DisplayInfo();
+                System.out.println("=======================================================================");
+            }
+        }
+
+        System.out.println("Please Enter 'back' to Return to Menu: ");
+        while(true)
+        {
+            String input = back.next();
+            if (input.equals("back"))
+            {
+                Menu();
+                break;
+            }
+            else
+            {
+                System.out.println("Invalid Input...\nEnter 'back' to Return to Menu: ");
+            }
+        }
     }
 }

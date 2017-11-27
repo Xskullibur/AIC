@@ -12,14 +12,13 @@ public class Laptop extends Computer{
         Weight = weight;
     }
 
-    public Laptop(String id, String s, String r, String h, double p, int w)
+    public Laptop(String id, String s, String r, String h, double p)
     {
         setComputerID(id);
         setProcessorSpeed(s);
         setRam(r);
         setHardDisk(h);
         setPrice(p);
-        Weight = w;
     }
 
     public Laptop() {
