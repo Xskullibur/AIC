@@ -205,14 +205,12 @@ public class Menu extends Computer
         }
 
         //HDD
-        int iSize;
         System.out.println("What is the Hard Disk Size:");
         while (true)
         {
-            String hSize = HDDsize.next();
             try
             {
-                iSize = Integer.parseInt(hSize);
+                int iSize = Integer.parseInt(HDDsize.next());
                 Hdd = Integer.toString(iSize);
                 break;
             }
@@ -656,5 +654,63 @@ public class Menu extends Computer
                 System.out.println("Invalid Input...\nEnter 'back' to Return to Menu: ");
             }
         }
+    }
+
+    //Edit Desktop
+    public void EditDesktop()
+    {
+        int index = -1;
+        String ID;
+        boolean wResult = true;
+        boolean iResult = true;
+        while (wResult)
+        {
+            if (iResult)
+            {
+                Scanner edit = new Scanner(System.in);
+                System.out.println("Please Enter Desktop ID to Edit: \n[Insert 'back' to Return Menu]");
+                ID = edit.next();
+
+                if (ID.equals("back"))
+                {
+                    Menu();
+                    wResult = false;
+                }
+                else
+                {
+                    for (Desktop d:database.getDesktop())
+                    {
+                        if (!d.getComputerID().equals(ID))
+                        {
+                            System.out.println("Invalid Desktop ID! Please Try Again...");
+                        }
+                        else
+                        {
+                            index = database.DesktopIndexOf(d);
+                            iResult = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("\n********************* Desktop Editor *********************");
+                System.out.println("[1]     Desktop");
+                System.out.println("[2]     Laptop");
+                System.out.println("[3]     Display All Computer Information");
+                System.out.println("[4]     Quit");
+                System.out.println("***********************************************************************");
+                System.out.print("Please enter either 1 to 4: ");
+
+                Scanner selection = new Scanner(System.in);
+
+            }
+        }
+    }
+
+    //Edit Laptop
+    public void EditLaptop()
+    {
+
     }
 }
