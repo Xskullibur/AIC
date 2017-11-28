@@ -10,9 +10,10 @@ public class Menu extends Computer
     private Scanner HDDsize = new Scanner(System.in);
     private Scanner HDDbytes = new Scanner(System.in);
     private Scanner price = new Scanner(System.in);
+    private Scanner monitor = new Scanner(System.in);
 
     //NewMenu
-    public void Menu()
+    public void NewMenu()
     {
         String input;
         System.out.println("\n********************* Artificial Intelligence Co. *********************");
@@ -57,7 +58,7 @@ public class Menu extends Computer
     }
 
     //Desktop Menu
-    public void DesktopMenu()
+    private void DesktopMenu()
     {
         String input;
         System.out.println("\n============================= Desktop Menu ============================");
@@ -84,14 +85,14 @@ public class Menu extends Computer
                         RemoveDesktop();
                         break;
                     case "3":
-                        //EditDesktop();
-                        System.out.println("Editing");
+                        EditDesktop();
+
                         break;
                     case "4":
                         DisplayDesktop();
                         break;
                     case "5":
-                        Menu();
+                        NewMenu();
                         break;
                 }
                 break;
@@ -104,7 +105,7 @@ public class Menu extends Computer
     }
 
     //Laptop Menu
-    public void LaptopMenu()
+    private void LaptopMenu()
     {
         String input;
         System.out.println("\n===================== Artificial Intelligence Co. =====================");
@@ -131,15 +132,13 @@ public class Menu extends Computer
                         RemoveLaptop();
                         break;
                     case "3":
-                        //EditLaptop();
-                        System.out.println("Editing");
+                        EditLaptop();
                         break;
                     case "4":
                         DisplayLaptop();
                         break;
                     case "5":
-                        Menu();
-                        break;
+                        NewMenu();
                 }
                 break;
             }
@@ -153,8 +152,6 @@ public class Menu extends Computer
     //Add Desktop
     private void NewDesktop()
     {
-        Scanner monitor = new Scanner(System.in);
-
         //Desktop ID
         boolean IDresult = true;
         System.out.println("What is the Desktop's ID: ");
@@ -221,38 +218,25 @@ public class Menu extends Computer
         }
 
         System.out.println("HDD Size\n1) GB\n2) TB");
-        int Bytes;
         while (true)
         {
             String sBytes = HDDbytes.next();
-            if (sBytes.equals("1") || sBytes.equals("2"))
+            if (sBytes.equals("1"))
             {
-                try
-                {
-                    Bytes = Integer.parseInt(sBytes);
-                    break;
-                }
-                catch (NumberFormatException e)
-                {
-                    System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
-                }
+                Hdd += " GB";
+                setHardDisk(Hdd);
+                break;
+            }
+            else if (sBytes.equals("2"))
+            {
+                Hdd += " TB";
+                setHardDisk(Hdd);
+                break;
             }
             else
             {
                 System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
             }
-        }
-
-        switch (Bytes)
-        {
-            case 1:
-                Hdd += " GB";
-                setHardDisk(Hdd);
-                break;
-            case 2:
-                Hdd += " TB";
-                setHardDisk(Hdd);
-                break;
         }
 
         //Price
@@ -310,7 +294,7 @@ public class Menu extends Computer
         database.addDesktop(d1);
 
         System.out.println("\nYour information has been added successfully");
-        Menu();
+        NewMenu();
     }
 
     //Add Laptop
@@ -383,38 +367,25 @@ public class Menu extends Computer
         }
 
         System.out.println("HDD Size\n1) GB\n2) TB");
-        int Bytes;
         while (true)
         {
             String sBytes = HDDbytes.next();
-            if (sBytes.equals("1") || sBytes.equals("2"))
+            if (sBytes.equals("1"))
             {
-                try
-                {
-                    Bytes = Integer.parseInt(sBytes);
-                    break;
-                }
-                catch (NumberFormatException e)
-                {
-                    System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
-                }
+                Hdd += " GB";
+                setHardDisk(Hdd);
+                break;
+            }
+            else if (sBytes.equals("2"))
+            {
+                Hdd += " TB";
+                setHardDisk(Hdd);
+                break;
             }
             else
             {
                 System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
             }
-        }
-
-        switch (Bytes)
-        {
-            case 1:
-                Hdd += " GB";
-                setHardDisk(Hdd);
-                break;
-            case 2:
-                Hdd += " TB";
-                setHardDisk(Hdd);
-                break;
         }
 
         //Price
@@ -456,11 +427,11 @@ public class Menu extends Computer
         database.addLaptop(l1);
 
         System.out.println("\nYour information has been added successfully");
-        Menu();
+        NewMenu();
     }
 
     //Remove Desktop
-    public void RemoveDesktop()
+    private void RemoveDesktop()
     {
         int index = -1;
         String ID;
@@ -476,7 +447,7 @@ public class Menu extends Computer
 
                 if (ID.equals("back"))
                 {
-                    Menu();
+                    NewMenu();
                     wResult = false;
                 }
 
@@ -500,11 +471,11 @@ public class Menu extends Computer
             }
         }
         System.out.println("Desktop Removed Successfully...");
-        Menu();
+        NewMenu();
     }
 
     //Remove Laptop
-    public void RemoveLaptop()
+    private void RemoveLaptop()
     {
         int index = -1;
         String ID;
@@ -520,7 +491,7 @@ public class Menu extends Computer
 
                 if (ID.equals("back"))
                 {
-                    Menu();
+                    NewMenu();
                     wResult = false;
                 }
 
@@ -540,11 +511,11 @@ public class Menu extends Computer
             }
         }
         System.out.println("Laptop Removed Successfully...");
-        Menu();
+        NewMenu();
     }
 
     //Display All Info
-    public void DisplayAllInfo()
+    private void DisplayAllInfo()
     {
         int Dname = 0;
         int Lname = 0;
@@ -579,11 +550,11 @@ public class Menu extends Computer
                 System.out.println("=======================================================================");
             }
         }
-        Menu();
+        NewMenu();
     }
 
     //Display Desktop
-    public void DisplayDesktop()
+    private void DisplayDesktop()
     {
         Scanner back = new Scanner(System.in);
         int Dname = 0;
@@ -609,7 +580,7 @@ public class Menu extends Computer
             String input = back.next();
             if (input.equals("back"))
             {
-                Menu();
+                NewMenu();
                 break;
             }
             else
@@ -620,7 +591,7 @@ public class Menu extends Computer
     }
 
     //Display Laptop
-    public void DisplayLaptop()
+    private void DisplayLaptop()
     {
         Scanner back = new Scanner(System.in);
         int Lname = 0;
@@ -646,7 +617,7 @@ public class Menu extends Computer
             String input = back.next();
             if (input.equals("back"))
             {
-                Menu();
+                NewMenu();
                 break;
             }
             else
@@ -657,7 +628,7 @@ public class Menu extends Computer
     }
 
     //Edit Desktop
-    public void EditDesktop()
+    private void EditDesktop()
     {
         int index = -1;
         String ID;
@@ -673,7 +644,7 @@ public class Menu extends Computer
 
                 if (ID.equals("back"))
                 {
-                    Menu();
+                    NewMenu();
                     wResult = false;
                 }
                 else
@@ -692,25 +663,362 @@ public class Menu extends Computer
                     }
                 }
             }
-            else
-            {
+            else {
                 System.out.println("\n********************* Desktop Editor *********************");
-                System.out.println("[1]     Desktop");
-                System.out.println("[2]     Laptop");
-                System.out.println("[3]     Display All Computer Information");
-                System.out.println("[4]     Quit");
+                System.out.println("[1]     ID");
+                System.out.println("[2]     Processor Speed");
+                System.out.println("[3]     Ram");
+                System.out.println("[4]     HDD");
+                System.out.println("[5]     Price");
+                System.out.println("[6]     Monitor");
+                System.out.println("[7]     Quit To Main Menu");
+                //System.out.println("[7]     Recreate");
                 System.out.println("***********************************************************************");
                 System.out.print("Please enter either 1 to 4: ");
 
                 Scanner selection = new Scanner(System.in);
 
+                switch (selection.next())
+                {
+                    case "1":
+                        boolean IDresult = true;
+                        System.out.println("New Desktop ID: ");
+                        while(IDresult)
+                        {
+                            IDresult = database.SelectDesktop(index).setComputerID(comID.next());
+                            if (IDresult)
+                            {
+                                System.out.println("Invalid Desktop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Desktop ID: ");
+                                wResult = false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+
+                    case "2":
+                        System.out.println("New Desktop Processor: ");
+                        boolean Presult = true;
+                        while (Presult)
+                        {
+                            Presult = database.SelectDesktop(index).setProcessorSpeed(processSpeed.next());
+                            if (Presult)
+                            {
+                                System.out.println("Invalid Price Input! Please enter Valid Price...\nPlease Enter Processor Speed: ");
+                                wResult = false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+
+                    case "3":
+                        System.out.println("New Desktop Ram:");
+                        boolean Rresult = true;
+                        while (Rresult)
+                        {
+                            Rresult = database.SelectDesktop(index).setRam(ram.next());
+                            if (Rresult)
+                            {
+                                System.out.println("Invalid RAM Input! Please enter Valid Ram...\\nPlease Enter RAM: ");
+                                wResult = false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+                    case "4":
+                        System.out.println("New Hard Disk Size:");
+                        while (true)
+                        {
+                            try
+                            {
+                                int iSize = Integer.parseInt(HDDsize.next());
+                                Hdd = Integer.toString(iSize);
+                                break;
+                            }
+                            catch (NumberFormatException e)
+                            {
+                                System.out.println("Invalid Size! Please enter Valid HDD Size...\nPlease Enter HDD Size: ");
+                            }
+                        }
+
+                        System.out.println("New HDD Size\n1) GB\n2) TB");
+                        while (true)
+                        {
+                            String sBytes = HDDbytes.next();
+                            if (sBytes.equals("1"))
+                            {
+                                Hdd += " GB";
+                                database.SelectDesktop(index).setHardDisk(Hdd);
+                                break;
+                            }
+                            else if (sBytes.equals("2"))
+                            {
+                                Hdd += " TB";
+                                database.SelectDesktop(index).setHardDisk(Hdd);
+                                break;
+                            }
+                            else
+                            {
+                                System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
+                            }
+                        }
+                        break;
+
+                    case "5":
+                        System.out.print("New Price: \n$S");
+                        while (true)
+                        {
+                            String sPrice = price.next()+"\n";
+                            try
+                            {
+                                database.SelectDesktop(index).setPrice(Double.parseDouble(sPrice));
+                                break;
+                            }
+                            catch(NumberFormatException e)
+                            {
+                                System.out.println("Invalid Price! Please enter Valid Price...\nPlease Re-Enter Price: ");
+                            }
+                        }
+                        break;
+
+                    case "6":
+                        System.out.print("What is the Monitor Type: \n1) For LED\n2) For LCD\n");
+                        String Monitor = "";
+                        int iMonitor;
+                        while (true)
+                        {
+                            String sMonitor = monitor.nextLine();
+                            if (sMonitor.equals("1") || sMonitor.equals("2"))
+                            {
+                                try
+                                {
+                                    iMonitor = Integer.parseInt(sMonitor);
+                                    break;
+                                }
+                                catch (NumberFormatException e)
+                                {
+                                    System.out.println("Invalid Option! Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
+                                }
+                            }
+                            else
+                            {
+                                System.out.println("Invalid Option! Please Re-Enter Monitor Type...\n1) For LED\n2) For LCD");
+                            }
+                        }
+
+                        switch(iMonitor)
+                        {
+                            case 1:
+                                Monitor = "LED";
+                                break;
+                            case 2:
+                                Monitor = "LCD";
+                        }
+                        database.SelectDesktop(index).setMonitor(Monitor);
+                        break;
+                    case "7":
+                        NewMenu();
+
+                }
+                EditDesktop();
             }
         }
     }
 
     //Edit Laptop
-    public void EditLaptop()
+    private void EditLaptop()
     {
+        int index = -1;
+        String ID;
+        boolean wResult = true;
+        boolean iResult = true;
+        while (wResult)
+        {
+            if (iResult)
+            {
+                Scanner edit = new Scanner(System.in);
+                System.out.println("Please Enter Laptop ID to Edit: \n[Insert 'back' to Return Menu]");
+                ID = edit.next();
 
+                if (ID.equals("back"))
+                {
+                    NewMenu();
+                    wResult = false;
+                }
+                else
+                {
+                    for (Laptop d:database.getLaptop())
+                    {
+                        if (!d.getComputerID().equals(ID))
+                        {
+                            System.out.println("Invalid Laptop ID! Please Try Again...");
+                        }
+                        else
+                        {
+                            index = database.LaptopIndexOf(d);
+                            iResult = false;
+                        }
+                    }
+                }
+            }
+            else {
+                System.out.println("\n********************* Laptop Editor *********************");
+                System.out.println("[1]     ID");
+                System.out.println("[2]     Processor Speed");
+                System.out.println("[3]     Ram");
+                System.out.println("[4]     HDD");
+                System.out.println("[5]     Price");
+                System.out.println("[6]     Monitor");
+                System.out.println("[7]     Quit To Main Menu");
+                //System.out.println("[7]     Recreate");
+                System.out.println("***********************************************************************");
+                System.out.print("Please enter either 1 to 4: ");
+
+                Scanner selection = new Scanner(System.in);
+
+                switch (selection.next())
+                {
+                    case "1":
+                        boolean IDresult = true;
+                        System.out.println("New Laptop ID: ");
+                        while(IDresult)
+                        {
+                            IDresult = database.SelectLaptop(index).setComputerID(comID.next());
+                            if (IDresult)
+                            {
+                                System.out.println("Invalid Laptop ID! Laptop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Laptop ID: ");
+                                wResult = false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+
+                    case "2":
+                        System.out.println("New Laptop Processor: ");
+                        boolean Presult = true;
+                        while (Presult)
+                        {
+                            Presult = database.SelectLaptop(index).setProcessorSpeed(processSpeed.next());
+                            if (Presult)
+                            {
+                                System.out.println("Invalid Price Input! Please enter Valid Price...\nPlease Enter Processor Speed: ");
+                                wResult = false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+
+                    case "3":
+                        System.out.println("New Laptop Ram:");
+                        boolean Rresult = true;
+                        while (Rresult)
+                        {
+                            Rresult = database.SelectLaptop(index).setRam(ram.next());
+                            if (Rresult)
+                            {
+                                System.out.println("Invalid RAM Input! Please enter Valid Ram...\\nPlease Enter RAM: ");
+                                wResult = false;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        break;
+                    case "4":
+                        System.out.println("New Hard Disk Size:");
+                        while (true)
+                        {
+                            try
+                            {
+                                int iSize = Integer.parseInt(HDDsize.next());
+                                Hdd = Integer.toString(iSize);
+                                break;
+                            }
+                            catch (NumberFormatException e)
+                            {
+                                System.out.println("Invalid Size! Please enter Valid HDD Size...\nPlease Enter HDD Size: ");
+                            }
+                        }
+
+                        System.out.println("New HDD Size\n1) GB\n2) TB");
+                        while (true)
+                        {
+                            String sBytes = HDDbytes.next();
+                            if (sBytes.equals("1"))
+                            {
+                                Hdd += " GB";
+                                database.SelectLaptop(index).setHardDisk(Hdd);
+                                break;
+                            }
+                            else if (sBytes.equals("2"))
+                            {
+                                Hdd += " TB";
+                                database.SelectLaptop(index).setHardDisk(Hdd);
+                                break;
+                            }
+                            else
+                            {
+                                System.out.println("Invalid Option! Please enter Valid Option...\nHDD Size:\n1) GB\n2) TB");
+                            }
+                        }
+                        break;
+
+                    case "5":
+                        System.out.print("New Price: \n$S");
+                        while (true)
+                        {
+                            String sPrice = price.next()+"\n";
+                            try
+                            {
+                                database.SelectLaptop(index).setPrice(Double.parseDouble(sPrice));
+                                break;
+                            }
+                            catch(NumberFormatException e)
+                            {
+                                System.out.println("Invalid Price! Please enter Valid Price...\nPlease Re-Enter Price: ");
+                            }
+                        }
+                        break;
+
+                    case "6":
+                        int Weight;
+                        Scanner weight = new Scanner(System.in);
+                        System.out.print("What is the Weight: \n");
+                        while (true)
+                        {
+                            String sWeight = weight.next();
+                            try
+                            {
+                                Weight = Integer.parseInt(sWeight);
+                                break;
+                            }
+                            catch (NumberFormatException e)
+                            {
+                                System.out.println("Invalid Weight! Please enter Valid Weight...\nPlease Re-Enter Weight: ");
+                            }
+                        }
+                        database.SelectLaptop(index).setWeight(Weight);
+                    case "7":
+                        NewMenu();
+
+                }
+                EditLaptop();
+            }
+        }
     }
 }

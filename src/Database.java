@@ -42,4 +42,14 @@ public class Database extends Computer
     public ArrayList<Desktop> getDesktop() { return desktop; }
 
     public ArrayList<Laptop> getLaptop() { return laptop; }
+
+    public Desktop SelectDesktop(int index)
+    {
+        return desktop.get(index);
+    }
+
+    public Laptop SelectLaptop(int index)
+    {
+        return laptop.get(index);
+    }
 }
