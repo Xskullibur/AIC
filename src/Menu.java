@@ -68,13 +68,13 @@ public class Menu extends Computer
         System.out.println("[4]     Display all Desktops");
         System.out.println("[5]     Back");
         System.out.println("=======================================================================");
-        System.out.print("Please enter either 1 to 4: ");
+        System.out.print("Please enter either 1 to 5: ");
 
         Scanner scan = new Scanner(System.in);
         while (true)
         {
             input = scan.next();
-            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4"))
+            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5"))
             {
                 switch (input)
                 {
@@ -86,7 +86,6 @@ public class Menu extends Computer
                         break;
                     case "3":
                         EditDesktop();
-
                         break;
                     case "4":
                         DisplayDesktop();
@@ -115,13 +114,13 @@ public class Menu extends Computer
         System.out.println("[4]     Display all Laptops");
         System.out.println("[5]     Back");
         System.out.println("=======================================================================");
-        System.out.print("Please enter either 1 to 4: ");
+        System.out.print("Please enter either 1 to 5: ");
 
         Scanner scan = new Scanner(System.in);
         while (true)
         {
             input = scan.next();
-            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4"))
+            if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5"))
             {
                 switch (input)
                 {
@@ -154,8 +153,8 @@ public class Menu extends Computer
     {
         //Desktop ID
         boolean IDresult = true;
-        System.out.println("What is the Desktop's ID: ");
 
+        System.out.println("What is the Desktop's ID: ");
         while(IDresult)
         {
             IDresult = setComputerID(comID.next());
@@ -171,6 +170,7 @@ public class Menu extends Computer
 
         //Processor Speed
         boolean Presult = true;
+
         System.out.println("What is the Processor Speed: ");
         while (Presult)
         {
@@ -187,6 +187,7 @@ public class Menu extends Computer
 
         //RAM
         boolean Rresult = true;
+
         System.out.println("What is the Ram: ");
         while (Rresult)
         {
@@ -203,6 +204,7 @@ public class Menu extends Computer
 
         //HDD
         System.out.println("What is the Hard Disk Size:");
+
         while (true)
         {
             try
@@ -257,6 +259,7 @@ public class Menu extends Computer
 
         //Monitor
         System.out.print("What is the Monitor Type: \n1) For LED\n2) For LCD\n");
+
         String Monitor = "";
         int iMonitor;
         while (true)
@@ -302,6 +305,7 @@ public class Menu extends Computer
     {
         //LaptopID
         boolean IDresult = true;
+
         System.out.println("What is the Laptop's ID: ");
         while(IDresult)
         {
@@ -318,6 +322,7 @@ public class Menu extends Computer
 
         //Processor Speed
         boolean Presult = true;
+
         System.out.println("What is the Processor Speed: ");
         while (Presult)
         {
@@ -334,6 +339,7 @@ public class Menu extends Computer
 
         //RAM
         boolean Rresult = true;
+
         System.out.println("What is the Ram: ");
         while (Rresult)
         {
@@ -350,6 +356,7 @@ public class Menu extends Computer
 
         //HDD
         int iSize;
+
         System.out.println("What is the Hard Disk Size:");
         while (true)
         {
@@ -518,7 +525,6 @@ public class Menu extends Computer
     private void DisplayAllInfo()
     {
         int Dname = 0;
-        int Lname = 0;
         if (database.getDesktop().isEmpty())
         {
             System.out.println("\n========================== No Desktop Found! ==========================");
@@ -535,6 +541,7 @@ public class Menu extends Computer
             }
         }
 
+        int Lname = 0;
         if (database.getLaptop().isEmpty())
         {
             System.out.println("========================== No Laptop Found! ===========================\n");
