@@ -153,18 +153,42 @@ public class Functions extends Computer
     {
         //Desktop ID
         boolean IDresult = true;
+        boolean check = true;
+        String ID;
 
         System.out.println("What is the Desktop's ID: ");
         while(IDresult)
         {
-            IDresult = setComputerID(comID.next());
+            ID = comID.next();
+            IDresult = setComputerID(ID);
             if (IDresult)
             {
                 System.out.println("Invalid Desktop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Desktop ID: ");
             }
             else
             {
-                break;
+                if (check)
+                {
+                    for (Desktop d:database.getDesktop())
+                    {
+                        if (d.getComputerID().equals(ID))
+                        {
+                            System.out.println("Desktop ID Already Exist! \nPlease Insert a New Desktop ID:");
+                            check = true;
+                            IDresult = true;
+                        }
+                        else
+                        {
+                            check = false;
+                            IDresult = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 
@@ -303,20 +327,44 @@ public class Functions extends Computer
     //Add Laptop
     private void NewLaptop()
     {
-        //LaptopID
+        //Laptop ID
         boolean IDresult = true;
+        boolean check = true;
+        String ID;
 
         System.out.println("What is the Laptop's ID: ");
         while(IDresult)
         {
-            IDresult = setComputerID(comID.next());
+            ID = comID.next();
+            IDresult = setComputerID(ID);
             if (IDresult)
             {
                 System.out.println("Invalid Laptop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Laptop ID: ");
             }
             else
             {
-                break;
+                if (check)
+                {
+                    for (Laptop l:database.getLaptop())
+                    {
+                        if (l.getComputerID().equals(ID))
+                        {
+                            System.out.println("Laptop ID Already Exist! \nPlease Insert a New Laptop ID:");
+                            check = true;
+                            IDresult = true;
+                        }
+                        else
+                        {
+                            check = false;
+                            IDresult = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 
