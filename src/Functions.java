@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Menu extends Computer
+public class Functions extends Computer
 {
     private String Hdd;
     private Database database = new Database();
@@ -57,11 +57,11 @@ public class Menu extends Computer
         }
     }
 
-    //Desktop Menu
+    //Desktop Functions
     private void DesktopMenu()
     {
         String input;
-        System.out.println("\n============================= Desktop Menu ============================");
+        System.out.println("\n============================= Desktop Functions ============================");
         System.out.println("[1]     Add New Desktop");
         System.out.println("[2]     Remove Existing Desktop");
         System.out.println("[3]     Edit Existing Desktop");
@@ -103,7 +103,7 @@ public class Menu extends Computer
         }
     }
 
-    //Laptop Menu
+    //Laptop Functions
     private void LaptopMenu()
     {
         String input;
@@ -449,7 +449,7 @@ public class Menu extends Computer
             if (iResult)
             {
                 Scanner Remove = new Scanner(System.in);
-                System.out.println("Please Enter Computer ID to Delete: \n[Insert 'back' to Return to Menu]");
+                System.out.println("Please Enter Computer ID to Delete: \n[Insert 'back' to Return to Functions]");
                 ID = Remove.next();
 
                 if (ID.equals("back"))
@@ -581,7 +581,7 @@ public class Menu extends Computer
             }
         }
 
-        System.out.println("Please Enter 'back' to Return to Menu: ");
+        System.out.println("Please Enter 'back' to Return to Functions: ");
         while(true)
         {
             String input = back.next();
@@ -592,7 +592,7 @@ public class Menu extends Computer
             }
             else
             {
-                System.out.println("Invalid Input...\nEnter 'back' to Return to Menu: ");
+                System.out.println("Invalid Input...\nEnter 'back' to Return to Functions: ");
             }
         }
     }
@@ -618,7 +618,7 @@ public class Menu extends Computer
             }
         }
 
-        System.out.println("Please Enter 'back' to Return to Menu: ");
+        System.out.println("Please Enter 'back' to Return to Functions: ");
         while(true)
         {
             String input = back.next();
@@ -629,7 +629,7 @@ public class Menu extends Computer
             }
             else
             {
-                System.out.println("Invalid Input...\nEnter 'back' to Return to Menu: ");
+                System.out.println("Invalid Input...\nEnter 'back' to Return to Functions: ");
             }
         }
     }
@@ -646,7 +646,7 @@ public class Menu extends Computer
             if (iResult)
             {
                 Scanner edit = new Scanner(System.in);
-                System.out.println("Please Enter Desktop ID to Edit: \n[Insert 'back' to Return Menu]");
+                System.out.println("Please Enter Desktop ID to Edit: \n[Insert 'back' to Return Functions]");
                 ID = edit.next();
 
                 if (ID.equals("back"))
@@ -678,7 +678,7 @@ public class Menu extends Computer
                 System.out.println("[4]     HDD");
                 System.out.println("[5]     Price");
                 System.out.println("[6]     Monitor");
-                System.out.println("[7]     Quit To Main Menu");
+                System.out.println("[7]     Quit To Main Functions");
                 //System.out.println("[7]     Recreate");
                 System.out.println("***********************************************************************");
                 System.out.print("Please enter either 1 to 4: ");
@@ -852,7 +852,7 @@ public class Menu extends Computer
             if (iResult)
             {
                 Scanner edit = new Scanner(System.in);
-                System.out.println("Please Enter Laptop ID to Edit: \n[Insert 'back' to Return Menu]");
+                System.out.println("Please Enter Laptop ID to Edit: \n[Insert 'back' to Return Functions]");
                 ID = edit.next();
 
                 if (ID.equals("back"))
@@ -884,7 +884,7 @@ public class Menu extends Computer
                 System.out.println("[4]     HDD");
                 System.out.println("[5]     Price");
                 System.out.println("[6]     Monitor");
-                System.out.println("[7]     Quit To Main Menu");
+                System.out.println("[7]     Quit To Main Functions");
                 //System.out.println("[7]     Recreate");
                 System.out.println("***********************************************************************");
                 System.out.print("Please enter either 1 to 4: ");
