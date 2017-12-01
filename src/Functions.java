@@ -339,7 +339,7 @@ public class Functions extends Computer
             IDresult = setComputerID(ID);
             if (IDresult)
             {
-                System.out.println("Invalid Laptop ID! Desktop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Laptop ID: ");
+                System.out.println("Invalid Laptop ID! Laptop ID Can Only be 4 Numbers or Characters Long\nPlease Re-Enter Laptop ID: ");
             }
             else
             {
@@ -985,7 +985,7 @@ public class Functions extends Computer
                             Rresult = database.SelectLaptop(index).setRam(ram.next());
                             if (Rresult)
                             {
-                                System.out.println("Invalid RAM Input! Please enter Valid Ram...\\nPlease Enter RAM: ");
+                                System.out.println("Invalid RAM Input! Please enter Valid RAM...\\nPlease Enter RAM: ");
                                 wResult = false;
                             }
                             else

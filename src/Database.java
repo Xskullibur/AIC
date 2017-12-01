@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Database extends Computer
+public class Database
 {
     private ArrayList<Desktop> desktop = new ArrayList<>();
     private ArrayList<Laptop> laptop = new ArrayList<>();
